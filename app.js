@@ -20,12 +20,18 @@ console.log(guessThisNumber);
 
 button.addEventListener('click', () => {
     const userInput = Number(input.value);
-    const userResults = userInput;
-    const guessThisNumber = globalNumber;
-    return results.textContent = userResults;
-    const doTheyMatch = matchingLogic(userInput, globalNumber);
+    const doTheyMatch = matchingLogic(userInput, guessThisNumber);
     console.log(doTheyMatch, userInput, guessThisNumber);
     
+    if (doTheyMatch === 0) {
+        return results.textContent = 'You did it! You guessed the number!';
+    }
+    if (doTheyMatch === -1) {
+        return results.textContent = 'You\'re too low! Ask a bigger number next time!';
+    }
+    if (doTheyMatch === 1) {
+        return results.textContent = 'Your number is too big! Ask a smaller number next time!';
+    }
 
 });
 

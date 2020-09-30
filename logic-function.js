@@ -18,10 +18,10 @@ export function matchingLogic(userInput, guessThisNumber) {
     if (userInput === guessThisNumber) {
         return 0;
     }
-    // if (userInput < guessThisNumber) {
-    //     return -1;
-    // }
-    // if (userInput > guessThisNumber) {
-    //     return 1;
-    // }
+    if (userInput < guessThisNumber) {
+        return -1;
+    }
+    if (userInput > guessThisNumber) {
+        return +1;
+    }
 }
