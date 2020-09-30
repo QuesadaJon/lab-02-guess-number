@@ -39,8 +39,9 @@ button.addEventListener('click', () => {
     if (attemptLimit === attempts) {
         return results.textContent = `${guessThisNumber} was the correct number!`, guesses.textContent = 'You failed to guess the correct number in the allotted guesses. GAME OVER!';
     }
-
+    guesses.textContent = `${attempts} attempts made.`;
 });
+
 
 
 
