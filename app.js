@@ -13,24 +13,31 @@ import { matchingLogic } from './logic-function.js';
 const button = document.getElementById('button');
 const results = document.getElementById('results');
 const input = document.getElementById('input');
+const guesses = document.getElementById('guesses-remaining');
 //global states
 let guessThisNumber = Math.floor(Math.random() * 19 + 1);
-console.log(guessThisNumber);
+let attempts = 0;
+console.log(guessThisNumber, attempts);
 // set event listeners to update state and DOM
 
 button.addEventListener('click', () => {
+    attempts++;
+    const attemptLimit = 5;
     const userInput = Number(input.value);
     const doTheyMatch = matchingLogic(userInput, guessThisNumber);
-    console.log(doTheyMatch, userInput, guessThisNumber);
+    console.log(doTheyMatch, userInput, guessThisNumber, attempts);
     
     if (doTheyMatch === 0) {
         return results.textContent = 'You did it! You guessed the number!';
     }
     if (doTheyMatch === -1) {
-        return results.textContent = 'You\'re too low! Ask a bigger number next time!';
+        results.textContent = 'You\'re too low! Ask a bigger number next time!';
     }
     if (doTheyMatch === 1) {
-        return results.textContent = 'Your number is too big! Ask a smaller number next time!';
+        results.textContent = 'Your number is too big! Ask a smaller number next time!';
+    }
+    if (attemptLimit === attempts) {
+        return results.textContent = `${guessThisNumber} was the correct number!`, guesses.textContent = 'You failed to guess the correct number in the allotted guesses. GAME OVER!';
     }
 
 });
